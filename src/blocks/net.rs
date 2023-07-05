@@ -135,8 +135,8 @@ pub async fn run(config: &Config, api: &CommonApi) -> Result<()> {
                         let diff = new_stats - old_stats;
                         let elapsed = stats_timer.elapsed().as_secs_f64();
                         stats_timer = Instant::now();
-                        speed_down = diff.rx_bytes as f64 / elapsed;
-                        speed_up = diff.tx_bytes as f64 / elapsed;
+                        speed_down = diff.rx_bytes as f64 / elapsed * 8.0;
+                        speed_up = diff.tx_bytes as f64 / elapsed * 8.0;
                         stats = Some(new_stats);
                     }
                 }
